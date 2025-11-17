@@ -6,8 +6,8 @@ services:
       context: ./backend
       dockerfile: Dockerfile
     container_name: backend
-    ports:
-      - "8000:8000"
+    expose:
+      - "8000"               # Only accessible inside Docker network
     environment:
       - PORT=8000
     networks:
@@ -18,10 +18,21 @@ services:
       context: ./frontend
       dockerfile: Dockerfile
     container_name: frontend
+    # No ports needed — Nginx will serve the build output
+    networks:
+      - appnet
+
+  nginx:
+    image: nginx:latest
+    container_name: nginx
     ports:
-      - "80:80"
+      - "80:80"              # Only Nginx is public
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/conf.d/default.conf:ro
+      - ./frontend/build:/usr/share/nginx/html:ro
     depends_on:
       - backend
+      - frontend
     networks:
       - appnet
 

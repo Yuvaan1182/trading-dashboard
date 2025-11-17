@@ -10,7 +10,7 @@ import type { Order, PriceMap, StockMap } from "./types";
 import { useEffect, useState } from "react";
 import { api } from "./lib/api"; // axios instance
 
-const WS_BASE_URL = "ws://localhost:8000";
+const WS_BASE_URL = import.meta.env.VITE_WS_URL;
 
 function App() {
   const [stocks, setStocks] = useState<StockMap>({});

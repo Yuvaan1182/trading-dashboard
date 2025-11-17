@@ -21,15 +21,15 @@ func main() {
 	router := gin.Default()
 
 	router.Use(cors.New(cors.Config{
-		AllowOrigins:     []string{"http://localhost:5173", "http://localhost:80", "http://localhost"},
+		AllowOrigins:     []string{"http://54.234.51.140"},
 		AllowMethods:     []string{"GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"},
 		AllowHeaders:     []string{"Origin", "Content-Type", "Authorization"},
 		AllowCredentials: true,
 	}))
 
-	router.GET("/prices", controller.GetPricesHandler)
-	router.GET("/orders", controller.GetOrderrHandler)
-	router.POST("/orders", controller.AddOrderHandler)
+	router.GET("/api/prices", controller.GetPricesHandler)
+	router.GET("/api/orders", controller.GetOrderrHandler)
+	router.POST("/api/orders", controller.AddOrderHandler)
 
 	router.GET("/ws", func(c *gin.Context) {
 		websocket.WSserver(hub, c)
