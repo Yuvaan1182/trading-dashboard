@@ -18,9 +18,9 @@ RUN npm run build
 # This stage exposes dist/ so docker-compose can mount it
 FROM alpine:3.18 AS export
 
-WORKDIR /app
+WORKDIR /export
 
 # Copy built dist folder from builder
-COPY --from=builder /app/dist ./dist
+COPY --from=builder /export/dist ./dist
 
 # Nothing runs here – only used to export dist folder
