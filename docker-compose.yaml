@@ -11,16 +11,13 @@ services:
     networks:
       - appnet
 
-  # Frontend Build Service (creates dist folder on host)
   frontend:
     build:
       context: ./frontend
       dockerfile: Dockerfile
-      target: export        # <-- IMPORTANT! Use export stage
+      target: export
     container_name: frontend
-    command: ["true"]       # Container exits immediately, only needed for build
-    volumes:
-      - ./frontend/dist:/app/dist    # Export dist from image to host
+    command: ["true"]
     networks:
       - appnet
 
