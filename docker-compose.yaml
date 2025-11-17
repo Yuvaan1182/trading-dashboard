@@ -15,10 +15,10 @@ services:
     build:
       context: ./frontend
       dockerfile: Dockerfile
-      target: export
+      target: export          # <-- Build export stage
     container_name: frontend
     volumes:
-      - dist_data:/export/dist
+      - dist_data:/export/dist     # <-- EXPORT dist OUT of container
     command: ["true"]
     networks:
       - appnet
@@ -30,7 +30,7 @@ services:
       - "80:80"
     volumes:
       - ./nginx/nginx.conf:/etc/nginx/conf.d/default.conf:ro
-      - dist_data:/usr/share/nginx/html:ro
+      - dist_data:/usr/share/nginx/html:ro   # <-- USE docker volume, NOT bind mount
     depends_on:
       - backend
       - frontend
@@ -40,3 +40,6 @@ services:
 networks:
   appnet:
     driver: bridge
+
+volumes:
+  dist_data:
