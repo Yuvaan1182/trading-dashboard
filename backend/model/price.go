@@ -36,6 +36,11 @@ func UpdatePricesRandomly(chance float64) map[string]float64 {
 			priceChangePercent := (lcRand.Float64() * 0.1) - 0.05 // change from -5% to 5%
 			newPrice := price * (1 + priceChangePercent)
 
+			/* --- fixing price drop 0 --- */
+			if newPrice < 1 {
+				newPrice = 1
+			}
+
 			/* --- moving price down to 2 decimal --- */
 			newPrice = float64(int(newPrice*100)) / 100
 			priceManager.prices[symbol] = newPrice
