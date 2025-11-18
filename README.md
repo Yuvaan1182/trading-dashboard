@@ -15,6 +15,9 @@ A real-time trading dashboard built with:
 
 ![Trading Dashboard UI](https://github.com/Yuvaan1182/trading-dashboard/blob/main/assets/aws-deployed-app-sc.png)
 
+## 🐳 Application Architecture
+![Trading Application Architecture](https://github.com/Yuvaan1182/trading-dashboard/blob/main/assets/app-architecture.png)
+
 ## 🚀 Features
 
 ### Backend (Go)
